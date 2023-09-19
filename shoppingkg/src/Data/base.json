@@ -1,0 +1,42 @@
+[
+    {
+        "id":1,
+        "title":"tifal",
+        "price":"100",
+        "category":"Bitovaya texnika",
+        "brand":"artel",
+        "description":"artel kompaniyasidan sifatli tifal",
+        "image":"./img/tifal.jpg",
+        "reting":"3"
+    },
+    {
+        "id":2,
+        "title":"tifal",
+        "price":"100",
+        "category":"Bitovaya texnika",
+        "brand":"artel",
+        "description":"artel kompaniyasidan sifatli tifal",
+        "image":"./img/tifal.jpg",
+        "reting":"3"
+    },
+    {
+        "id":3,
+        "title":"tifal",
+        "price":"100",
+        "category":"Bitovaya texnika",
+        "brand":"artel",
+        "description":"artel kompaniyasidan sifatli tifal",
+        "image":"./img/blendr.webp",
+        "reting":"3"
+    },
+    {
+        "id":4,
+        "title":"tifal",
+        "price":"100",
+        "category":"Bitovaya texnika",
+        "brand":"artel",
+        "description":"artel kompaniyasidan sifatli tifal",
+        "image":"./img/tifal.jpg",
+        "reting":"3"
+    }
+]
