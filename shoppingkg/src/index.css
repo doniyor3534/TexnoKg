@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+*{
+    font-weight: 600;
+}
+button{
+    cursor: pointer !important;
+    padding: 5px 10px;
+    /* border: 1px solid grey; */
+}
+.app{
+    max-width: 1920px;
+    margin: 0 auto;
+}
+/* ///////////navbar */
+
+.header .ul{
+    top: 100%;
+   height: auto;
+   opacity: 1;
+   z-index: 5;
+}
+
+/* ///////////navbar */

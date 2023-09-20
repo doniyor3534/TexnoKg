@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Likes extends Component {
-  render() {
-    return (
-      <div>Likes</div>
-    )
-  }
+export default function Likes() {
+  return (
+    <div>Likes</div>
+  )
 }
+
