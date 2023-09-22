@@ -392,7 +392,7 @@ export default function Category() {
     ]
     const {categoryopen} = useSelector((state) => state.counter)
   return (
-    <div className={`${categoryopen?"top-[100%]":'top-[-800px]'}   z-50  absolute   min-w-[300px] border rounded-lg  grid grid-cols-1 bg-white `}>
+    <div className={`${categoryopen?"top-[100%]":'top-[-800px]'} border-yellow shadow-2xl shadow-black  z-50  absolute   min-w-[300px] border rounded-lg  grid grid-cols-1 bg-white `}>
         
         {
             category.map((x,i)=>(

@@ -11,6 +11,10 @@ import Carts from "./Component/CartsLikes/Carts";
 import CategoryPage from './Component/CategoryPage/CategoryPage';
 import LoginLogout from './Component/LoginLogout/LoginLogout';
 import BarBottom from './Component/navbar/barBottom';
+import ModalFunc from './Component/All/Modal';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -31,6 +35,10 @@ function App() {
           <Route path="/cart" element={<Carts />} />
         </Routes>
         <BarBottom />
+        {/* ////////////////////modal */}
+        <ModalFunc/>
+        {/* //////////////////toastify */}
+        <ToastContainer />
       </Router>
     </div>
   );

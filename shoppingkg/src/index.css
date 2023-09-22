@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@import "react-alice-carousel/lib/alice-carousel.css";
 
 *{
     font-weight: 600;
@@ -23,5 +23,15 @@ button{
    opacity: 1;
    z-index: 5;
 }
-
+.navbar{
+    position: sticky;
+    top: 0px;
+    left: 0;
+    z-index: 55;
+}
 /* ///////////navbar */
+/* /////////////caruselHome */
+.alice-carousel__play-btn{
+    display: none !important;
+}
+/* /////////////caruselHome */
