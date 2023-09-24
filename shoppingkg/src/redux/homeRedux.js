@@ -26,6 +26,8 @@ export const counterSlice = createSlice({
       let s = state.data.find((item) => item.id === action.payload)
       if (s.like === false) {
         state.data = state.data.map((x) => x.id === action.payload ? { ...x, like: true } : x)
+        ////////cartdata ga ham bildirish
+        state.cartdata = state.cartdata.map((x) => x.id === action.payload ? { ...x, like: true } : x)
         let likefillter = state.data.filter((x) => x.id === action.payload)
         state.likedata.push(likefillter)
         toast.success("Like Success Notification !", {
@@ -41,6 +43,8 @@ export const counterSlice = createSlice({
     },
     likechangeReset: (state, action) => {
         state.data = state.data.map((x) => x.id === action.payload ? { ...x, like: false } : x)
+        ////////cartdata ga ham bildirish
+        state.cartdata =   state.cartdata.map((x) => x.id === action.payload ? { ...x, like: false } : x)
         let likefillter = state.data.filter((x) => x.id === action.payload)
         state.likedata.push(likefillter)
         toast.error("Delete like Success Notification !", {
@@ -48,8 +52,21 @@ export const counterSlice = createSlice({
         });
     },
     cartchange: (state, action) => {
-      state.value += action.payload
+      state.data = state.data.map((x) => x.id === action.payload ? { ...x, cart: true } : x)
+      let cartfilter = state.data.filter((x) => x.cart===true)
+      state.cartdata = cartfilter
+      toast.success("Product add Success Notification !", {
+        position: toast.POSITION.TOP_CENTER
+      });
     },
+    lcartchangeReset: (state, action) => {
+      state.data = state.data.map((x) => x.id === action.payload ? { ...x, cart: false } : x)
+      let cartfilter = state.data.filter((x) => x.cart===true)
+      state.cartdata = cartfilter
+      toast.error("Delete product cart  Success Notification !", {
+        position: toast.POSITION.TOP_CENTER
+      });
+  },
     modalchange: (state) => {
       if (state.modalopen) {
         state.modalopen = false
@@ -65,6 +82,6 @@ export const counterSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { categoryopenfun, likechange, modalchange,modalValuereducer,likechangeReset} = counterSlice.actions
+export const { categoryopenfun, likechange, modalchange,modalValuereducer,likechangeReset,cartchange,lcartchangeReset} = counterSlice.actions
 
 export default counterSlice.reducer

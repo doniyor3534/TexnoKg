@@ -1,7 +1,7 @@
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { useDispatch, useSelector } from 'react-redux'
-import { likechangeReset, modalchange } from '../../redux/homeRedux'
+import { cartchange, likechangeReset, modalchange } from '../../redux/homeRedux'
 import Stars from '../Stars'
 import { FaShoppingCart } from 'react-icons/fa'
 import { MdDeleteSweep } from 'react-icons/md'
@@ -56,7 +56,7 @@ export default function ModalFunc() {
                                                     <div className="flex justify-between">
                                                         <h3 className=' my-1 text-2xl'>{x.price}$ </h3>
                                                         <button onClick={() =>resetLikefun(x.id)} className={`   border absolute top-1 right-1 bg-bg2 border-bg1 rounded-full lg:text-2xl py-2  hover:text-red-600`}>{ <MdDeleteSweep  className='text-red-500' />}</button>
-                                                        <button className='border border-yellow rounded-lg px-6 bg-yellow  hover:text-green'><FaShoppingCart /></button>
+                                                        <button onClick={()=>dispatch(cartchange(x.id))} className='border border-yellow rounded-lg px-6 bg-yellow  hover:text-green'><FaShoppingCart /></button>
                                                     </div>
                                                 </div>
                                             ))

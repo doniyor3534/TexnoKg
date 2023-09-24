@@ -5,13 +5,13 @@ import { FaMicrophone, FaSearch, FaShoppingCart } from 'react-icons/fa'
 import { BsPersonFill, BsBagHeartFill } from 'react-icons/bs'
 import Category from './Category'
 import { useDispatch, useSelector } from 'react-redux'
-import { categoryopenfun, modalValuereducer, modalchange } from '../../redux/homeRedux'
+import {  categoryopenfun, modalValuereducer, modalchange } from '../../redux/homeRedux'
 import { NavLink } from 'react-router-dom'
 import logo from './logo4.png'
 
 
 export default function Navbar() {
-const {likedata,cartdata,data} =useSelector((state)=>state.counter)
+const {cartdata,data} =useSelector((state)=>state.counter)
 const dispatch = useDispatch()
 
 const [scrollactive, setScrollactive] = useState(false);
