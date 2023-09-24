@@ -11,7 +11,7 @@ import logo from './logo4.png'
 
 
 export default function Navbar() {
-const {cartdata,data} =useSelector((state)=>state.counter)
+const {cartdata,data,likedata} =useSelector((state)=>state.counter)
 const dispatch = useDispatch()
 
 const [scrollactive, setScrollactive] = useState(false);
@@ -21,10 +21,9 @@ useEffect(() => {
       window.scrollY > 250 ? setScrollactive(true) : setScrollactive(false);
   });
 }, []);
-const like = data.filter((x)=>x.like===true)
 
 const modalvaluefun=()=>{
-    dispatch(modalValuereducer(like))
+    dispatch(modalValuereducer(likedata))
     dispatch(modalchange())
 }
 
@@ -45,7 +44,7 @@ const modalvaluefun=()=>{
                     </div>
                     <div className="hidden  btngroup lg:flex gap-3">
                         <NavLink to={'/loginlogout'} className='border rounded-lg p-2 '> <BsPersonFill className=' text-xl' /></NavLink>
-                        <button onClick={()=>modalvaluefun()} className='border rounded-lg relative p-2'> <span className='absolute top-[-15px] right-[-5px] bg-yellow px-2 rounded-full '>{like.length}</span> <BsBagHeartFill className=' text-xl' /></button>
+                        <button onClick={()=>modalvaluefun()} className='border rounded-lg relative p-2'> <span className='absolute top-[-15px] right-[-5px] bg-yellow px-2 rounded-full '>{likedata.length}</span> <BsBagHeartFill className=' text-xl' /></button>
                         <NavLink to={'/cart'} className='border rounded-lg relative p-2'><span className='absolute top-[-15px] right-[-5px] bg-yellow px-2 rounded-full  '>{cartdata.length}</span><FaShoppingCart  className=' text-xl'/></NavLink>
                     </div>
                     {/* ///////////category */}

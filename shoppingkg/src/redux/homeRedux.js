@@ -5,8 +5,8 @@ import { toast } from 'react-toastify'
 const initialState = {
   categoryopen: false,
   data: datafake,
-  likedata: [],
-  cartdata: [],
+  likedata: JSON.parse(localStorage.getItem('likedata')) || [],
+  cartdata:  JSON.parse(localStorage.getItem('cartdata')) || [],
   modalopen: false,
   modalValue:[],
 }
@@ -23,46 +23,34 @@ export const counterSlice = createSlice({
       }
     },
     likechange: (state, action) => {
-      let s = state.data.find((item) => item.id === action.payload)
-      if (s.like === false) {
-        state.data = state.data.map((x) => x.id === action.payload ? { ...x, like: true } : x)
+   
         ////////cartdata ga ham bildirish
-        state.cartdata = state.cartdata.map((x) => x.id === action.payload ? { ...x, like: true } : x)
-        let likefillter = state.data.filter((x) => x.id === action.payload)
-        state.likedata.push(likefillter)
+        state.likedata.push(action.payload)
+        localStorage.setItem('likedata',JSON.stringify(state.likedata))
+        state.likedata = JSON.parse(localStorage.getItem('likedata'))
         toast.success("Like Success Notification !", {
           position: toast.POSITION.TOP_CENTER
         });
-      }else{
-        if (state.modalopen) {
-          state.modalopen = false
-        } else {
-          state.modalopen = true
-        }
-      }
+  
     },
     likechangeReset: (state, action) => {
-        state.data = state.data.map((x) => x.id === action.payload ? { ...x, like: false } : x)
         ////////cartdata ga ham bildirish
-        state.cartdata =   state.cartdata.map((x) => x.id === action.payload ? { ...x, like: false } : x)
-        let likefillter = state.data.filter((x) => x.id === action.payload)
-        state.likedata.push(likefillter)
+        state.likedata = state.likedata.filter((x)=>x.id !== action.payload)
+        localStorage.setItem("likedata",JSON.stringify(state.likedata))
         toast.error("Delete like Success Notification !", {
           position: toast.POSITION.TOP_CENTER
         });
     },
     cartchange: (state, action) => {
-      state.data = state.data.map((x) => x.id === action.payload ? { ...x, cart: true } : x)
-      let cartfilter = state.data.filter((x) => x.cart===true)
-      state.cartdata = cartfilter
+      state.cartdata.push(action.payload)
+      localStorage.setItem("cartdata",JSON.stringify(state.cartdata))
+      state.cartdata = JSON.parse(localStorage.getItem("cartdata"))
       toast.success("Product add Success Notification !", {
         position: toast.POSITION.TOP_CENTER
       });
     },
-    lcartchangeReset: (state, action) => {
-      state.data = state.data.map((x) => x.id === action.payload ? { ...x, cart: false } : x)
-      let cartfilter = state.data.filter((x) => x.cart===true)
-      state.cartdata = cartfilter
+    cartchangeReset: (state, action) => {
+      state.cartdata = state.cartdata.filter(x=>x.id!==action.payload)
       toast.error("Delete product cart  Success Notification !", {
         position: toast.POSITION.TOP_CENTER
       });
@@ -82,6 +70,6 @@ export const counterSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { categoryopenfun, likechange, modalchange,modalValuereducer,likechangeReset,cartchange,lcartchangeReset} = counterSlice.actions
+export const { categoryopenfun, likechange, modalchange,modalValuereducer,likechangeReset,cartchange,cartchangeReset} = counterSlice.actions
 
 export default counterSlice.reducer

@@ -10,14 +10,14 @@ export default function Cartcomponent({ x }) {
     const { data } = useSelector((state) => state.counter)
     const dispatch = useDispatch()
     // //////////////like bosiladi ikkichi bosilganda modal ochiladi
-    const modalvaluefun = (id) => {
+    const modalvaluefun = (value) => {
         dispatch(modalValuereducer(data.filter(x => x.like === true)))
-        dispatch(likechange(id))
+        dispatch(likechange(value))
 
     }
     //////////////cartchange
-    const cartchangefun = (id) => {
-        dispatch(cartchange(id))
+    const cartchangefun = (value) => {
+        dispatch(cartchange(value))
     }
     return (
         <div key={x.id} className="border relative bg-bg2  rounded-lg px-2 py-5 justify-center items-center grid grid-cols-1">
@@ -27,8 +27,8 @@ export default function Cartcomponent({ x }) {
             <span className='bg-slate-200 w-[max-content] rounded-lg px-2 lg:my-3 my-1'>{parseInt(x.price / 12 * 10) / 10}$ dan / 12oy</span>
             <div className="flex justify-between">
                 <h3 className=' my-1 text-2xl'>{x.price}$ </h3>
-                <button onClick={() => modalvaluefun(x.id)} className={`   border absolute top-1 right-1 bg-bg2 border-bg1 rounded-full lg:text-2xl py-2  hover:text-red-600`}>{x.like ? <FcLike /> : <AiOutlineHeart />}</button>
-                <button onClick={() => cartchangefun(x.id)} className='border border-yellow bg-yellow rounded-lg  px-6 '><FaShoppingCart /></button>
+                <button onClick={() => modalvaluefun(x)} className={`   border absolute top-1 right-1 bg-bg2 border-bg1 rounded-full lg:text-2xl py-2  hover:text-red-600`}>{x.like ? <FcLike /> : <AiOutlineHeart />}</button>
+                <button onClick={() => cartchangefun(x)} className='border border-yellow bg-yellow rounded-lg  px-6 '><FaShoppingCart /></button>
             </div>
         </div>
     )

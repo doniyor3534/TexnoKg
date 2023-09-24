@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Stars from '../Stars'
-import { lcartchangeReset, likechange, modalValuereducer } from '../../redux/homeRedux'
+import { cartchangeReset, likechange, modalValuereducer } from '../../redux/homeRedux'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { FcLike } from 'react-icons/fc'
 import { AiOutlineHeart } from 'react-icons/ai'
@@ -11,19 +11,18 @@ export default function Carts() {
   const { cartdata, data } = useSelector(state => state.counter)
   const dispatch = useDispatch()
   // //////////////like bosiladi ikkichi bosilganda modal ochiladi
-  const modalvaluefun = (id) => {
+  const modalvaluefun = (value) => {
     dispatch(modalValuereducer(data.filter(x => x.cart === true)))
-    dispatch(likechange(id))
+    dispatch(likechange(value))
 
   }
  
   //////////////cartchange
   const cartchangefunreset = (id) => {
-    dispatch(lcartchangeReset(id))
+    dispatch(cartchangeReset(id))
   }
-  console.log(cartdata);
   return (
-    <div className='grid lg:grid-cols-3 grid-cols-1 gap-2 my-5  mx-auto w-[100vw] lg:w-[80vw] justify-center '>
+    <div className='grid  min-h-[100vh] lg:grid-cols-3 grid-cols-1 gap-2 my-5  mx-auto w-[100vw] lg:w-[80vw] justify-center '>
       <div className="sidebar">
         <div className="buyurtma  border rounded-lg p-4 bg-bg2 h-[max-content]">
           <h1 className='text-4xl'>Savat</h1>
@@ -49,7 +48,7 @@ export default function Carts() {
                     <h3 className=' my-1 text-2xl line-through text-grey1 italic'>{x.price}$ </h3>
                     <h3 className=' my-1 text-2xl'>{x.price - (x.price / 100 * x.chegirma)}$ </h3>
                   </div>
-                  <button onClick={() => modalvaluefun(x.id)} className={`   border absolute top-1 right-1 bg-bg2 border-bg1 rounded-full lg:text-2xl py-2  hover:text-red-600`}>{x.like ? <FcLike /> : <AiOutlineHeart />}</button>
+                  <button onClick={() => modalvaluefun(x)} className={`   border absolute top-1 right-1 bg-bg2 border-bg1 rounded-full lg:text-2xl py-2  hover:text-red-600`}>{x.like ? <FcLike /> : <AiOutlineHeart />}</button>
                   <button onClick={() => cartchangefunreset(x.id)} className='border  bg-bg1 text-2xl rounded-lg  px-6 h-10 '><RiDeleteBin6Line /></button>
                 </div>
                 <div className="countgroup flex py-2 gap-2 w-[max-content] bg-yellow lg:px-4 px-2">

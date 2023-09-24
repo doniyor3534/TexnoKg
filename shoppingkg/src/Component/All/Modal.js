@@ -12,8 +12,8 @@ export default function ModalFunc() {
     const dispatch = useDispatch()
     const cancelButtonRef = useRef(null) ///modal cancel value
     // //////////////////////reset like modalll
-    const resetLikefun=(id)=>{
-        dispatch(likechangeReset(id))
+    const resetLikefun=(value)=>{
+        dispatch(likechangeReset(value.id))
         dispatch(modalchange())
       
     }
@@ -55,8 +55,8 @@ export default function ModalFunc() {
                                                     <span className='bg-slate-200 w-[max-content] rounded-lg px-2 lg:my-3 my-1'>{parseInt(x.price / 12 * 10) / 10}$ dan / 12oy</span>
                                                     <div className="flex justify-between">
                                                         <h3 className=' my-1 text-2xl'>{x.price}$ </h3>
-                                                        <button onClick={() =>resetLikefun(x.id)} className={`   border absolute top-1 right-1 bg-bg2 border-bg1 rounded-full lg:text-2xl py-2  hover:text-red-600`}>{ <MdDeleteSweep  className='text-red-500' />}</button>
-                                                        <button onClick={()=>dispatch(cartchange(x.id))} className='border border-yellow rounded-lg px-6 bg-yellow  hover:text-green'><FaShoppingCart /></button>
+                                                        <button onClick={() =>resetLikefun(x)} className={`   border absolute top-1 right-1 bg-bg2 border-bg1 rounded-full lg:text-2xl py-2  hover:text-red-600`}>{ <MdDeleteSweep  className='text-red-500' />}</button>
+                                                        <button onClick={()=>dispatch(cartchange(x))} className='border border-yellow rounded-lg px-6 bg-yellow  hover:text-green'><FaShoppingCart /></button>
                                                     </div>
                                                 </div>
                                             ))
