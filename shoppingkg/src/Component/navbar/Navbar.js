@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import {  categoryopenfun, modalValuereducer, modalchange } from '../../redux/homeRedux'
 import { NavLink } from 'react-router-dom'
 import logo from './logo4.png'
+import ModalFunc from '../All/Modal'
+import Likes from '../CartsLikes/Likes'
 
 
 export default function Navbar() {
@@ -22,8 +24,14 @@ useEffect(() => {
   });
 }, []);
 
+// likes btn
 const modalvaluefun=()=>{
-    dispatch(modalValuereducer(likedata))
+    dispatch(modalValuereducer('likes'))
+    dispatch(modalchange())
+}
+// Login  btn
+const Loginbtnfun=()=>{
+    dispatch(modalValuereducer('login'))
     dispatch(modalchange())
 }
 
@@ -43,7 +51,7 @@ const modalvaluefun=()=>{
                         </div>
                     </div>
                     <div className="hidden  btngroup lg:flex gap-3">
-                        <NavLink to={'/loginlogout'} className='border rounded-lg p-2 '> <BsPersonFill className=' text-xl' /></NavLink>
+                        <button onClick={Loginbtnfun} className='border rounded-lg p-2 '> <BsPersonFill className=' text-xl' /></button>
                         <button onClick={()=>modalvaluefun()} className='border rounded-lg relative p-2'> <span className='absolute top-[-15px] right-[-5px] bg-yellow px-2 rounded-full '>{likedata.length}</span> <BsBagHeartFill className=' text-xl' /></button>
                         <NavLink to={'/cart'} className='border rounded-lg relative p-2'><span className='absolute top-[-15px] right-[-5px] bg-yellow px-2 rounded-full  '>{cartdata.length}</span><FaShoppingCart  className=' text-xl'/></NavLink>
                     </div>

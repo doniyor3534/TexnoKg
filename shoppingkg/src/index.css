@@ -6,6 +6,9 @@
 *{
     font-weight: 600;
 }
+::-webkit-scrollbar{
+    width: 0px;
+}
 button{
     cursor: pointer !important;
     padding: 5px 10px;

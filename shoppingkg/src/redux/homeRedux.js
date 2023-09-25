@@ -23,34 +23,47 @@ export const counterSlice = createSlice({
       }
     },
     likechange: (state, action) => {
-   
-        ////////cartdata ga ham bildirish
+        let likeopen = state.likedata.findIndex((x)=>x.id===action.payload.id)
+       if(likeopen === -1){
         state.likedata.push(action.payload)
         localStorage.setItem('likedata',JSON.stringify(state.likedata))
         state.likedata = JSON.parse(localStorage.getItem('likedata'))
         toast.success("Like Success Notification !", {
           position: toast.POSITION.TOP_CENTER
         });
+       }else{
+        toast.warning("Like yes old !", {
+          position: toast.POSITION.TOP_CENTER
+        });
+       }
   
     },
     likechangeReset: (state, action) => {
-        ////////cartdata ga ham bildirish
         state.likedata = state.likedata.filter((x)=>x.id !== action.payload)
         localStorage.setItem("likedata",JSON.stringify(state.likedata))
+        state.modalValue = JSON.parse(localStorage.getItem("likedata"))
         toast.error("Delete like Success Notification !", {
           position: toast.POSITION.TOP_CENTER
         });
     },
     cartchange: (state, action) => {
-      state.cartdata.push(action.payload)
-      localStorage.setItem("cartdata",JSON.stringify(state.cartdata))
-      state.cartdata = JSON.parse(localStorage.getItem("cartdata"))
-      toast.success("Product add Success Notification !", {
-        position: toast.POSITION.TOP_CENTER
-      });
+      let cartopen = state.cartdata.findIndex((x)=>x.id===action.payload.id)
+      if(cartopen === -1){
+        state.cartdata.push(action.payload)
+        localStorage.setItem("cartdata",JSON.stringify(state.cartdata))
+        state.cartdata = JSON.parse(localStorage.getItem("cartdata"))
+        toast.success("Product add Cart to Notification !", {
+          position: toast.POSITION.TOP_CENTER
+        });
+      }else{
+        toast.warning("cart to yes old !", {
+          position: toast.POSITION.TOP_CENTER
+        });
+      }
     },
     cartchangeReset: (state, action) => {
-      state.cartdata = state.cartdata.filter(x=>x.id!==action.payload)
+      localStorage.setItem("cartdata",JSON.stringify(state.cartdata.filter(x=>x.id!==action.payload)))
+      state.cartdata = JSON.parse(localStorage.getItem("cartdata"))
       toast.error("Delete product cart  Success Notification !", {
         position: toast.POSITION.TOP_CENTER
       });
@@ -63,13 +76,20 @@ export const counterSlice = createSlice({
       }
     },
     modalValuereducer: (state,action) => {
-      console.log(action.payload);
       state.modalValue = action.payload
-    }
+    },
+    cartcounincriment:(state,action)=>{
+      localStorage.setItem("cartdata",JSON.stringify(state.cartdata.map(x=>x.id===action.payload?{...x,count:x.count+1}:x)))
+      state.cartdata = JSON.parse(localStorage.getItem('cartdata'))
+    },
+    cartcoundecriment:(state,action)=>{
+      localStorage.setItem("cartdata",JSON.stringify(state.cartdata.map(x=>x.id===action.payload?{...x,count:(x.count > 1 ? x.count-1:1)}:x)))
+      state.cartdata = JSON.parse(localStorage.getItem('cartdata'))
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { categoryopenfun, likechange, modalchange,modalValuereducer,likechangeReset,cartchange,cartchangeReset} = counterSlice.actions
+export const { categoryopenfun, likechange, modalchange,modalValuereducer,likechangeReset,cartchange,cartchangeReset,cartcounincriment,cartcoundecriment} = counterSlice.actions
 
 export default counterSlice.reducer
