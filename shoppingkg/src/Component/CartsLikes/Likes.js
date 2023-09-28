@@ -4,7 +4,7 @@ import Stars from '../Stars'
 import { FaShoppingCart } from 'react-icons/fa'
 import { MdDeleteSweep } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux'
-
+import nodata from '../../img/nodata.png'
 
 export default function Likes() {
   const {  likedata } = useSelector(state => state.counter)
@@ -16,7 +16,7 @@ export default function Likes() {
   return (
     <div>
        {
-                                            likedata.map((x, i) => (
+                                     likedata.length>0?       likedata.map((x, i) => (
                                                 <div key={x.id} className="border relative my-1 bg-bg2  rounded-lg px-2 py-5 justify-center items-center grid grid-cols-1">
                                                     <img src={x.image} alt="" className='lg:h-[150px] h-[100px] w-auto mx-auto mix-blend-multiply ' />
                                                     <h5 className='text-grey1 lg:my-3 text-sm lg:text-xl'>{x.title ? x.title.slice(0, 20) : ''}</h5>
@@ -29,6 +29,9 @@ export default function Likes() {
                                                     </div>
                                                 </div>
                                             ))
+                                            :<div className='flex items-center justify-center'>
+                                            <img src={nodata} alt=""className='lg:w-[50vw] w-[100vw]' />
+                                       </div>
                                         }
     </div>
   )

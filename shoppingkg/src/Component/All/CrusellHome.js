@@ -27,6 +27,6 @@ const items = [
 
 export const Gallery = () => {
   return (
-    <AliceCarousel responsive={responsive}  mouseTracking items={items} renderPlayPauseButton={false} autoPlay={true} autoPlayInterval={1500} autoPlayControls={true} infinite={true} />
+    <AliceCarousel responsive={responsive}  mouseTracking items={items} renderPlayPauseButton={false} autoPlay={true} autoPlayInterval={2000} autoPlayControls={true} infinite={true} />
   );
 }

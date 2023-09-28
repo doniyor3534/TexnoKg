@@ -9,6 +9,7 @@ const initialState = {
   cartdata:  JSON.parse(localStorage.getItem('cartdata')) || [],
   modalopen: false,
   modalValue:[],
+  search:'',
 }
 
 export const counterSlice = createSlice({
@@ -45,6 +46,9 @@ export const counterSlice = createSlice({
         toast.error("Delete like Success Notification !", {
           position: toast.POSITION.TOP_CENTER
         });
+        if(state.likedata.length ===0){
+           state.modalopen = false
+        }
     },
     cartchange: (state, action) => {
       let cartopen = state.cartdata.findIndex((x)=>x.id===action.payload.id)
@@ -86,10 +90,13 @@ export const counterSlice = createSlice({
       localStorage.setItem("cartdata",JSON.stringify(state.cartdata.map(x=>x.id===action.payload?{...x,count:(x.count > 1 ? x.count-1:1)}:x)))
       state.cartdata = JSON.parse(localStorage.getItem('cartdata'))
     },
+    searchChange:(state,action)=>{
+        state.search = action.payload
+    }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { categoryopenfun, likechange, modalchange,modalValuereducer,likechangeReset,cartchange,cartchangeReset,cartcounincriment,cartcoundecriment} = counterSlice.actions
+export const { categoryopenfun, likechange, modalchange,modalValuereducer,likechangeReset,cartchange,cartchangeReset,cartcounincriment,cartcoundecriment,searchChange} = counterSlice.actions
 
 export default counterSlice.reducer

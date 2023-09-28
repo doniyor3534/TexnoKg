@@ -4,7 +4,7 @@
 @import "react-alice-carousel/lib/alice-carousel.css";
 
 *{
-    font-weight: 600;
+    font-weight: 400;
 }
 ::-webkit-scrollbar{
     width: 0px;
@@ -38,3 +38,14 @@ button{
     display: none !important;
 }
 /* /////////////caruselHome */
+/* /////////////caruselcategoryHome */
+.alice-carousel__dots{
+    display: none;
+}
+.alice-carousel__prev-btn{
+    display: none !important;
+}
+.alice-carousel__next-btn{
+    display: none !important;
+}
+/* /////////////caruselcategoryHome */

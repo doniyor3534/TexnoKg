@@ -6,6 +6,8 @@ import { RiDeleteBin6Line } from 'react-icons/ri'
 import { FcLike } from 'react-icons/fc'
 import { AiOutlineHeart } from 'react-icons/ai'
 import { FaMinus, FaPlus } from 'react-icons/fa'
+import nodata from '../../img/nodata.png'
+
 
 export default function Carts() {
   const { cartdata, data } = useSelector(state => state.counter)
@@ -33,7 +35,7 @@ export default function Carts() {
     <div className='grid  min-h-[100vh] lg:grid-cols-3 grid-cols-1 gap-2 my-5  mx-auto w-[100vw] lg:w-[80vw] justify-center '>
       <div className="col-span-2 max-h-[100vh] overflow-y-auto  ">
         {
-          cartdata.map((x, i) => (
+         cartdata.length>0? cartdata.map((x, i) => (
             <div key={x.id} className="border my-1 relative mx-auto  bg-bg2  rounded-lg px-2 py-5 justify-center items-center grid grid-cols-2">
               <img src={x.image} alt="" className='lg:h-[350px] h-[100px] w-auto mx-auto mix-blend-multiply ' />
               <div className="flex justify-around flex-col gap-3">
@@ -57,6 +59,9 @@ export default function Carts() {
               </div>
             </div>
           ))
+          :<div className='flex items-center justify-center'>
+          <img src={nodata} alt=""className='lg:w-[50vw] w-[100vw]' />
+     </div>
         }
       </div>
       <div className="sidebar">

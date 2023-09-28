@@ -14,6 +14,7 @@ import BarBottom from './Component/navbar/barBottom';
 import ModalFunc from './Component/All/Modal';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { FaTelegramPlane } from 'react-icons/fa';
 
 
 
@@ -39,6 +40,8 @@ function App() {
         <ModalFunc/>
         {/* //////////////////toastify */}
         <ToastContainer />
+        {/* //////////////////Icon telegram */}
+        <a className='fixed lg:bottom-16  lg:right-10 bottom-24 right-3 lg:text-4xl text-lg p-1 lg:p-3 border border-transparent text-blue-600 border-blue-600 rounded-full   transition-all  ' href="https://t.me/DoniyorbekTursunov35341" target='blank'><FaTelegramPlane/></a>
       </Router>
     </div>
   );
