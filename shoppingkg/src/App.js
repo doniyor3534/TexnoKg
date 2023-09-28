@@ -41,7 +41,7 @@ function App() {
         {/* //////////////////toastify */}
         <ToastContainer />
         {/* //////////////////Icon telegram */}
-        <a className='fixed lg:bottom-16  lg:right-10 bottom-24 right-3 lg:text-4xl text-lg p-1 lg:p-3 border border-transparent text-blue-600 border-blue-600 rounded-full   transition-all  ' href="https://t.me/DoniyorbekTursunov35341" target='blank'><FaTelegramPlane/></a>
+        <a className='fixed lg:bottom-16  lg:right-10 bottom-24 right-3 lg:text-4xl text-lg p-1 lg:p-3 border  text-blue-600 border-blue-600 rounded-full    ' href="https://t.me/DoniyorbekTursunov35341" target='blank'><FaTelegramPlane/></a>
       </Router>
     </div>
   );
