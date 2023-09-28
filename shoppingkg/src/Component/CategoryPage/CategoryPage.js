@@ -7,7 +7,7 @@ import { autoBatchEnhancer } from '@reduxjs/toolkit';
 
 
 export default function CategoryPage() {
-  const { data } = useSelector(state => state.counter)
+  const { data ,categoryvalue} = useSelector(state => state.counter)
 
 
   // /////////////reange narx
@@ -22,7 +22,7 @@ export default function CategoryPage() {
   // /////////////data filter in range
   return (
     <div className='lg:w-[80%] mx-auto py-5' >
-      <h1 className='text-3xl'>Sarlavha</h1>
+      <h1 className='text-3xl'>{categoryvalue}</h1>
       <hr />
       <div className="grid grid-cols-6">
         <div className="aside col-span-2 py-5 px-2">

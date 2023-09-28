@@ -15,6 +15,7 @@ import ModalFunc from './Component/All/Modal';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaTelegramPlane } from 'react-icons/fa';
+import Footer from './Component/footer/Footer';
 
 
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/like" element={<Likes />} />
           <Route path="/cart" element={<Carts />} />
         </Routes>
+        <Footer/>
         <BarBottom />
         {/* ////////////////////modal */}
         <ModalFunc/>

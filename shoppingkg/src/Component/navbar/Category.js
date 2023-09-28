@@ -6,7 +6,7 @@ import { FaShopify } from 'react-icons/fa'
 import { IoIosApps, IoIosCafe, IoIosConstruct, IoMdShirt, IoMdTennisball } from 'react-icons/io'
 import { IoCarSport, IoDesktopSharp} from 'react-icons/io5';
 import {NavLink} from 'react-router-dom'
-import { categoryopenfun } from '../../redux/homeRedux'
+import { categorychanValue, categoryopenfun } from '../../redux/homeRedux'
 
 export const category =[
      {
@@ -393,15 +393,16 @@ export const category =[
 export default function Category() {
     const {categoryopen} = useSelector((state) => state.counter)
     const dispatch = useDispatch()
-    const ctegoryclose=()=>{
+    const ctegoryclose=(x)=>{
          dispatch(categoryopenfun())
-    }
+         dispatch(categorychanValue(x.nomi))
+        }
   return (
     <div className={`${categoryopen?"top-[100%]":'top-[-800px]'} border-yellow shadow-2xl shadow-black  z-50  absolute   min-w-[300px] border rounded-lg  grid grid-cols-1 bg-white `}>
         
         {
             category.map((x,i)=>(
-               <NavLink to={'/categorypage'} onClick={ctegoryclose} className={`  flex justify-between items-center border-b-2 p-3 hover:bg-grey0`}key={i} >
+               <NavLink to={'/categorypage'} onClick={()=>ctegoryclose(x)} className={`  flex justify-between items-center border-b-2 p-3 hover:bg-grey0`}key={i} >
                   <span className='flex gap-3 items-center text-xl cursor-pointer ' >{x.icon} {x.nomi} </span>
                 <AiOutlineRight/>
                </NavLink>

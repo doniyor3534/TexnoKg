@@ -10,6 +10,7 @@ const initialState = {
   modalopen: false,
   modalValue:[],
   search:'',
+  categoryvalue:'',
 }
 
 export const counterSlice = createSlice({
@@ -92,11 +93,14 @@ export const counterSlice = createSlice({
     },
     searchChange:(state,action)=>{
         state.search = action.payload
+    },
+    categorychanValue:(state,action)=>{
+        state.categoryvalue = action.payload
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { categoryopenfun, likechange, modalchange,modalValuereducer,likechangeReset,cartchange,cartchangeReset,cartcounincriment,cartcoundecriment,searchChange} = counterSlice.actions
+export const { categoryopenfun, likechange, modalchange,modalValuereducer,likechangeReset,cartchange,cartchangeReset,cartcounincriment,cartcoundecriment,searchChange,categorychanValue} = counterSlice.actions
 
 export default counterSlice.reducer
