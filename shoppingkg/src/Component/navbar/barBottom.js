@@ -5,9 +5,10 @@ import { FaShoppingCart } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom'
 import { AiFillHome } from 'react-icons/ai'
 import { categoryopenfun, modalValuereducer, modalchange } from '../../redux/homeRedux'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function BarBottom() {
+    const { cartdata,  likedata } = useSelector((state) => state.counter)
     const dispatch = useDispatch()
     // Login  btn
 const Loginbtnfun=()=>{
@@ -20,8 +21,8 @@ const Loginbtnfun=()=>{
                 <NavLink to={'/'} className='border border-grey0 rounded-lg p-2 '> <AiFillHome className=' text-xl' /></NavLink>
                 <button onClick={()=>dispatch(categoryopenfun())} className='border border-grey0 rounded-lg p-2 '> <RiMenuSearchLine className=' text-xl' /></button>
                 <button onClick={Loginbtnfun} className='border border-grey0 rounded-lg p-2 '> <BsPersonFill className=' text-xl' /></button>
-                <NavLink to={'/like'} className='border border-grey0 rounded-lg relative p-2'> <span className='absolute top-[-15px] right-[-5px] bg-yellow px-2 rounded-full '>{2}</span> <BsBagHeartFill className=' text-xl' /></NavLink>
-                <NavLink to={'/cart'} className='border border-grey0 rounded-lg relative p-2'><span className='absolute top-[-15px] right-[-5px] bg-yellow px-2 rounded-full  '>{1}</span><FaShoppingCart className=' text-xl' /></NavLink>
+                <NavLink to={'/like'} className='border border-grey0 rounded-lg relative p-2'> <span className='absolute top-[-15px] right-[-5px] bg-yellow px-2 rounded-full '>{likedata.length}</span> <BsBagHeartFill className=' text-xl' /></NavLink>
+                <NavLink to={'/cart'} className='border border-grey0 rounded-lg relative p-2'><span className='absolute top-[-15px] right-[-5px] bg-yellow px-2 rounded-full  '>{cartdata.length}</span><FaShoppingCart className=' text-xl' /></NavLink>
             </div>
         </div>
     )

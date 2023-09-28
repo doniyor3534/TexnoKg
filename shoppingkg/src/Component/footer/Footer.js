@@ -7,8 +7,8 @@ import appstory from '../../img/appstory.svg'
 
 export default function Footer() {
     return (
-        <div className= ' grid grid-cols-4 bg-dark lg:px-[10%] px-2 lg:py-10 py-5 pb-[70px] text-grey0 '>
-            <ul className='flex flex-col gap-3'>
+        <div className= ' grid lg:grid-cols-4 grid-cols-1 bg-dark lg:px-[10%] px-2 lg:py-10 py-5 pb-[70px] text-grey0 '>
+            <ul className='my-5 flex flex-col gap-3'>
                 <a href="."><img src={logo} alt="" className='w-[100px] lg:w-[200px]' /></a>
                 <span>savolingiz bolsa yo'llang</span>
                 <a href="+998991101197" className='text-2xl'>+99899 110 11 97</a>
@@ -23,21 +23,21 @@ export default function Footer() {
                     <a className=' cursor-pointer lg:text-4xl text-fuchsia-500 text-2xl' href="https://t.me/DoniyorbekTursunov35341"><img className='w-[85px] lg:w-[150px]' src={appstory} alt="" /></a>
                 </div>
             </ul>
-            <ul className='flex flex-col gap-3'>
+            <ul className='my-5 flex flex-col gap-3'>
                 <h2 className='text-2xl'>Kompaniya</h2>
                 <span>Yuridik shaxslar uchun </span>
                 <span>Biz haqimizda</span>
                 <span>Yangiliklar va bloglar </span>
                 <span>Kerakli ko'rsatmalar </span>
             </ul>
-            <ul className='flex flex-col gap-3'>
+            <ul className='my-5 flex flex-col gap-3'>
                 <h2 className='text-2xl'>Ma'lumot</h2>
                 <span>Bepul yetkazib berish</span>
                 <span>Bonus tizimi</span>
                 <span>Shaxsiy kabinet </span>
                 <span>Aloqa raqamlari </span>
             </ul>
-            <ul className='flex flex-col gap-3'>
+            <ul className='my-5 flex flex-col gap-3'>
                 <h2 className='text-2xl'>Haridorga yordam</h2>
                 <span>Muddatli to'lovga sotib olish</span>
                 <span>Maxsulotni qaytarish</span>

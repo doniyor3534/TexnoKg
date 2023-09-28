@@ -22,11 +22,12 @@ export default function Cartcomponent({ x }) {
     return (
         <div key={x.id} className="border relative bg-bg2  rounded-lg px-2 py-5 justify-center items-center grid grid-cols-1">
             <img src={x.image} alt="" className='lg:h-[150px] h-[100px] w-auto mx-auto mix-blend-multiply ' />
-            <h5 className='text-grey1 lg:my-3 text-sm lg:text-xl'>{x.title ? x.title.slice(0, 20) : ''}</h5>
+            <h5 className='text-grey1 lg:my-3 text-sm lg:text-xl'>{x.title ? x.title.slice(0, 20) : ''}  </h5>
+            <span>/ mavjud tovar <span className='underline'>{x.rating.count}</span> dona</span>
             {<Stars />}
             <span className='bg-slate-200 w-[max-content] rounded-lg px-2 lg:my-3 my-1'>{parseInt(x.price / 12 * 10) / 10}$ dan / 12oy</span>
             <div className="flex justify-between">
-                <h3 className=' my-1 lg:text-2xl text-lg '>{x.price}$ </h3>
+                <h3 className=' my-1 lg:text-2xl text-lg '>{x.price}$  </h3>
                 <button onClick={() => modalvaluefun(x)} className={`   border absolute top-1 right-1 bg-bg2 border-bg1 rounded-full lg:text-2xl py-2  hover:text-red-600`}>{x.like ? <FcLike /> : <AiOutlineHeart />}</button>
                 <button onClick={() => cartchangefun(x)} className='border  border-yellow bg-yellow rounded-lg  lgpx-6 px-3 '><FaShoppingCart /></button>
             </div>

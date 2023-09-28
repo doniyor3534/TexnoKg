@@ -24,7 +24,7 @@ export default function CategoryPage() {
     <div className='lg:w-[80%] mx-auto py-5' >
       <h1 className='text-3xl'>{categoryvalue}</h1>
       <hr />
-      <div className="grid grid-cols-6">
+      <div className="grid lg:grid-cols-6 grid-cols-1 ">
         <div className="aside col-span-2 py-5 px-2">
           <h2>Narxlar</h2>
           <div className="narxtext border border-grey0 rounded-lg grid grid-cols-2">
@@ -42,6 +42,8 @@ export default function CategoryPage() {
               />
             </Box>
           </div>
+          <img className='my-2 hidden lg:inline-block' src="https://storage.kun.uz/source/3/7q8KO4Sp2P5oCPN6-PBJEllOCQFcfdgL.jpg" alt="" />
+          <img className='my-2 hidden lg:inline-block' src="https://daryo.uz/static/2021/11/%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0-%D0%B4%D0%BB%D1%8F-Daryo.uz_50.png" alt="" />
         </div>
         <div className="grid lg:grid-cols-3 grid-cols-2  col-span-4 gap-2 py-5 lg:h-[90vh] overflow-y-auto">
           {
