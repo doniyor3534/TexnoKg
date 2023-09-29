@@ -1,34 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import {  useFormik } from 'formik';
-import * as Yup from 'yup';
-import {addDoc, collection, doc, getFirestore, onSnapshot, updateDoc} from 'firebase/firestore'
-import { initializeApp } from "firebase/app";
+// import * as Yup from 'yup';
+import { addDoc, collection, onSnapshot } from 'firebase/firestore';
+import { db } from '../firebase/Firebase';
+import { toast } from 'react-toastify';
+import { modalchange } from '../../redux/homeRedux';
+import { useDispatch } from 'react-redux';
 
 
-  // ///////////////////////////////auth
-  // // Import the functions you need from the SDKs you need
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyDe6lTsiZ4uZOPyUgS_1LHnuzpcdOIVeBk",
-  authDomain: "texnoauth.firebaseapp.com",
-  projectId: "texnoauth",
-  storageBucket: "texnoauth.appspot.com",
-  messagingSenderId: "85721086915",
-  appId: "1:85721086915:web:c1b2e439a527e310131b76"
-};
-
-// Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app)
-  // ///////////////////////////////auth
 
 
 export default function LoginLogout() {
 
-  // ///////////////////////////////////////////////////////////////////////
+  const dispatch = useDispatch()
+
+  // //////////////////////////////////////Get Auth/////////////////////////////////
   const [contacts, setContacts] = useState([])
   useEffect(() => {
     const getContacts = async () => {
@@ -53,7 +39,22 @@ export default function LoginLogout() {
     getContacts()
   }, [])
   console.log(contacts);
-  // ///////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////GEt Auth///////////////////////////////////
+  // ////////////////////////////////////Add Auth///////////////////////////////////
+  const Addcontact = async (value) => {
+    try {
+      const ContactRef = collection(db, 'doniyor3534')
+      await addDoc(ContactRef, value)
+    } catch (error) {
+      console.log(error);
+    }
+    toast("Add Contact saccessfuly",{
+      position:'top-center',
+      theme:'colored',
+      type:'success'
+    });
+  }
+  // ////////////////////////////////////Add Auth///////////////////////////////////
 
   const [login, setlogin] = useState(true)
   const loginfunlogin = () => {
@@ -62,21 +63,48 @@ export default function LoginLogout() {
   const loginfunsigin = () => {
     setlogin(false)
   }
+  //  ///////////formik login
+const formiklogin = useFormik({
+  initialValues:{
+    username:'',
+    email:'',
+    password:'',
+   },
+   onSubmit:values=>{
+    loginrender(formiklogin.values);
+   },
+   validate:values=>{
+      let errors ={}
+   
+      ///////////username
+      if(!values.username){
+        errors.username = 'Required'
+      }
+      ///////////tel
+      if(!values.password){
+        errors.password = 'Required'
+      }
+      
+      return errors;
+   }
+})
+ // /////////////useformik
    // /////////////useformik sigin
-   const formik = useFormik({
+   const formikSigIn = useFormik({
     initialValues:{
-     name:'',
-     email:'',
-     tel:'',
+      email:'',
+      username:'',
+     password:'',
     },
     onSubmit:values=>{
-      console.log('formik values',formik.values);
+      Addcontact(formikSigIn.values)
+      dispatch(modalchange())
     },
     validate:values=>{
        let errors ={}
-       ///////////name
-       if(!values.name){
-         errors.name = 'Required'
+       ///////////username
+       if(!values.username){
+         errors.username = 'Required'
        }
        // ////////email
        if(!values.email){
@@ -84,34 +112,30 @@ export default function LoginLogout() {
        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
          errors.email = 'Invalid email address';
        }
-       ///////////tel
-       if(!values.tel){
-         errors.tel = 'Required'
+       ///////////password
+       if(!values.password){
+         errors.password = 'Required'
        }
        
        return errors;
     }
  })
-//  ///////////formik login
-const formiklogin = useFormik({
-  initialValues:{
-    tel:'',
-   },
-   onSubmit:values=>{
-     console.log('formik values',formiklogin.values);
-   },
-   validate:values=>{
-      let errors ={}
-   
-      ///////////tel
-      if(!values.tel){
-        errors.tel = 'Required'
-      }
-      
-      return errors;
+
+//  ////////////////////////////////login render
+   const loginrender=(value)=>{
+    console.log(value);
+       const username = contacts.find(x=>x.username===value.username)
+       const password = contacts.find(x=>x.password===value.password)
+       if(username && password){
+         dispatch(modalchange())
+        toast("Yes Username and password saccessfuly",{
+          position:'top-center',
+          theme:'colored',
+          type:'success'
+        });
+       }
    }
-})
- // /////////////useformik
+//  ////////////////////////////////login render
   return (
     <div className='p-3 '>
       <div className="btngroup flex gap-2 my-3">
@@ -121,28 +145,33 @@ const formiklogin = useFormik({
       {login ?
         <>
           <form onSubmit={formiklogin.handleSubmit} className='flex flex-col gap-2' >
-            <label className='flex flex-col' htmlFor="tel">Tel
-            <input onChange={formiklogin.handleChange} value={formiklogin.values.tel}   className='border border-grey0 p-2 rounded-[5px] outline-yellow' type="tel" id='tel' placeholder='tel..' />
+            <label className='flex flex-col' htmlFor="username">Username
+            <input name='username' onChange={formiklogin.handleChange} value={formiklogin.values.username}   className='border border-grey0 p-2 rounded-[5px] outline-yellow' type="string" id='username' placeholder='username..' />
+            </label>
+            <label className='flex flex-col' htmlFor="password">Password
+            <input name='password' onChange={formiklogin.handleChange} value={formiklogin.values.password}   className='border border-grey0 p-2 rounded-[5px] outline-yellow' type="password" id='password' placeholder='password..' />
             </label>
             <button type='submit' className='bg-yellow my-3' >Submit</button>
+            <span className='text-grey1 italic text-start'>parolni unutdingizmi ?</span>
           </form>
         </>
         :
         <>
-          <form onSubmit={formik.handleSubmit} className='flex flex-col gap-2' >
-            <label className='flex flex-col' htmlFor="name">Name
-            <input name='name' onChange={formik.handleChange} value={formik.values.name}   className='border border-grey0 p-2 rounded-[5px] outline-yellow' type="text" id='name' placeholder='Name..' />
-             {formik.errors.name?<span className='text-red-500'>{formik.errors.name}</span>:null}
+          <form onSubmit={formikSigIn.handleSubmit} className='flex flex-col gap-2' >
+            <label className='flex flex-col' htmlFor="username">Username
+            <input name='username' onChange={formikSigIn.handleChange} value={formikSigIn.values.username}   className='border border-grey0 p-2 rounded-[5px] outline-yellow' type="text" id='username' placeholder='username..' />
+             {formikSigIn.errors.name?<span className='text-red-500'>{formikSigIn.errors.username}</span>:null}
             </label>
             <label className='flex flex-col' htmlFor="email">Email
-            <input name='email'  onChange={formik.handleChange} value={formik.values.email}  className='border border-grey0 p-2 rounded-[5px] outline-yellow' type="email" id='email' placeholder='Email..' />
-            {formik.errors.email?<span className='text-red-500'>{formik.errors.email}</span>:null}
+            <input name='email'  onChange={formikSigIn.handleChange} value={formikSigIn.values.email}  className='border border-grey0 p-2 rounded-[5px] outline-yellow' type="email" id='email' placeholder='Email..' />
+            {formikSigIn.errors.email?<span className='text-red-500'>{formikSigIn.errors.email}</span>:null}
             </label>
-            <label className='flex flex-col' htmlFor="tel">Tel
-            <input name='tel'  onChange={formik.handleChange} value={formik.values.tel}  className='border border-grey0 p-2 rounded-[5px] outline-yellow' type="number" id='tel' placeholder='tel..' />
-            {formik.errors.tel?<span className='text-red-500'>{formik.errors.tel}</span>:null}
+            <label className='flex flex-col' htmlFor="password">Password
+            <input name='password'  onChange={formikSigIn.handleChange} value={formikSigIn.values.password}  className='border border-grey0 p-2 rounded-[5px] outline-yellow' type="password" id='password' placeholder='password..' />
+            {formikSigIn.errors.tel?<span className='text-red-500'>{formikSigIn.errors.tel}</span>:null}
             </label>
             <button type='submit' className='bg-yellow my-3' >Submit</button>
+            <span className='border px-3 py-1 w-[max-content] rounded '><img src="https://www.cdnlogo.com/logos/g/35/google-icon.svg" alt="" className='w-[30px]' /></span>
           </form>
         </>
       }
