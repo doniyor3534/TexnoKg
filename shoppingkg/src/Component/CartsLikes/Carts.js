@@ -9,7 +9,9 @@ import { FaMinus, FaPlus } from 'react-icons/fa'
 import nodata from '../../img/nodata.png'
 
 
+
 export default function Carts() {
+  
   const { cartdata, data } = useSelector(state => state.counter)
   const dispatch = useDispatch()
   // //////////////like bosiladi ikkichi bosilganda modal ochiladi
@@ -31,6 +33,9 @@ export default function Carts() {
   const cartcountdecrFun=(value)=>{
      dispatch(cartcoundecriment(value.id))
   }
+
+
+
   return (
     <div className='grid  min-h-[100vh] lg:grid-cols-3 grid-cols-1 gap-2 my-5  mx-auto w-[100vw] lg:w-[80vw] justify-center '>
       <div className="col-span-2 max-h-[100vh] overflow-y-auto  ">
