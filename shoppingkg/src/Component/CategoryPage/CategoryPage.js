@@ -7,7 +7,7 @@ import { autoBatchEnhancer } from '@reduxjs/toolkit';
 
 
 export default function CategoryPage() {
-  const { data ,categoryvalue} = useSelector(state => state.counter)
+  const { data ,categoryvalue ,search} = useSelector(state => state.counter)
 
 
   // /////////////reange narx
@@ -19,6 +19,7 @@ export default function CategoryPage() {
   // /////////////reange narx
   // /////////////data filter in range
   const filterdata = data.filter((x)=>x.price>=value[0] && x.price<=value[1])
+  
   // /////////////data filter in range
   return (
     <div className='lg:w-[80%] mx-auto py-5' >
@@ -47,7 +48,10 @@ export default function CategoryPage() {
         </div>
         <div className="grid lg:grid-cols-3 grid-cols-2  col-span-4 gap-2 py-5 lg:h-[90vh] overflow-y-auto">
           {
-            filterdata.map((x, i) => (
+            search? filterdata.filter(item=>item.title.toLowerCase().includes(search.toLowerCase())).map((x, i) => (
+              <Cartcomponent x={x} key={i} />
+            ))
+            : filterdata.map((x, i) => (
               <Cartcomponent x={x} key={i} />
             ))
           }

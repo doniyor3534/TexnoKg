@@ -42,7 +42,7 @@ export default function ModalFunc({children}) {
                                     <div className="grid grid-cols-1">
                                        {modalValue==='likes'?
                                          <Likes/>
-                                       :<LoginLogout/>   
+                                       :modalValue==='login'?<LoginLogout/>  :'' 
                                     }
                                     </div>
                                 </div>
